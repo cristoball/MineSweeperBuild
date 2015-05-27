@@ -36,7 +36,7 @@ public class IntermediateView extends View
 		for (int i = 0; i < _nFieldSize; i++)
 		{
 			
-		    GridSpaceButton btnUntouched = new GridSpaceButton(Resources.iconUntouched);
+		    GridSpaceButton btnUntouched = new GridSpaceButton(Resources.getResources().iconUntouched);
 		    btnUntouched.setSize(16, 16);
 			
 			

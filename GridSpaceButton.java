@@ -3,13 +3,8 @@
  */
 
 
-import java.awt.Dimension;
-
-import javax.swing.Action;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,7 +16,8 @@ public class GridSpaceButton extends JButton //?- cannot get Swing to show corre
 
 	private GridSpace _gridSpace = null;
 	private boolean _bUncovered = false;
-
+	
+	
 	/**
 	 * @param iconGridUnit
 	 */
@@ -61,8 +57,8 @@ public class GridSpaceButton extends JButton //?- cannot get Swing to show corre
 	{
 		this.getGridSpace().setIdentified(true);
 		this.getGridSpace().setPossibleMine(false);
-		this.setIcon(Resources.iconDisarmed);
-		this.setDisabledIcon(Resources.iconDisarmed);
+		this.setIcon(Resources.getResources().iconDisarmed);
+		this.setDisabledIcon(Resources.getResources().iconDisarmed);
 		this.setEnabled(false);
 	}
 	
@@ -98,8 +94,8 @@ public class GridSpaceButton extends JButton //?- cannot get Swing to show corre
 	{
 		this.getGridSpace().setIdentified(false);
 		this.getGridSpace().setPossibleMine(true);
-		this.setIcon(Resources.iconPossibleMine);
-		this.setDisabledIcon(Resources.iconPossibleMine);
+		this.setIcon(Resources.getResources().iconPossibleMine);
+		this.setDisabledIcon(Resources.getResources().iconPossibleMine);
 		this.setEnabled(false);		
 		
 	}
@@ -120,8 +116,8 @@ public class GridSpaceButton extends JButton //?- cannot get Swing to show corre
 	{
 		this.getGridSpace().setIdentified(false);
 		this.getGridSpace().setPossibleMine(false);
-		this.setIcon(Resources.iconUntouched);
-		this.setDisabledIcon(Resources.icon0Mines);
+		this.setIcon(Resources.getResources().iconUntouched);
+		this.setDisabledIcon(Resources.getResources().icon0Mines);
 		this.setEnabled(true);				
 		
 	}

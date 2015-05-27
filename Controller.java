@@ -4,13 +4,9 @@
 
 
 import java.awt.List;
-import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-import javax.swing.WindowConstants;
 
 /**
  * @author Christoball
@@ -34,8 +30,6 @@ public class Controller implements Runnable
 	private GameButtonObserver _gameObserver = null;
 	private View _view;	
 	
-	private boolean _bUserStarted = false;
-	
 	/**
 	 * @param width
 	 * @param height
@@ -43,7 +37,6 @@ public class Controller implements Runnable
 	 */
 	public Controller() 
 	{
-		Resources res = new Resources();
 		_nFieldSize = _nWidth*_nHeight;
 		Settings.PLAYER_LEVEL = Settings.BEGINNER;
 	}
@@ -120,10 +113,9 @@ public class Controller implements Runnable
         	_view.setVisible(false);
         	_view = null;
         }
-		SwingUtilities.invokeLater(new Thread(this));
-		//run();
+//		SwingUtilities.invokeLater(new Thread(this));
+		run();
 	}
-	
 	
 	/**
 	 * Fill grid with mines and possible mines

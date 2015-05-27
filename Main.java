@@ -21,6 +21,7 @@ public class Main
 
 	public static void runMineSweeper()
 	{
+		
 		Controller controller = new Controller();
 		controller.newGame();
 		

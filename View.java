@@ -5,9 +5,6 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,16 +17,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
 import javax.swing.Timer;
-import javax.swing.border.Border;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.LayoutManager;
 
 
 /**
@@ -71,14 +63,14 @@ public class View extends JFrame implements ActionListener
 	protected JLabel lblTime100s = new JLabel("");
 	protected Timer _timer;
 	
-	protected JButton btnFace = new JButton(Resources.iconHappyFace);
+	protected JButton btnFace = new JButton();
 	
 	protected GridSpaceButton[] _gridSpaceBtns;// = new GridSpaceButton[_nFieldSize];
 	
 	protected GridSpaceObserver _actionObserver = null;
 	protected GameButtonObserver _gameObserver = null;
 	
-	protected Resources res = new Resources();
+	//Resources res = new Resources();
 	
 	/**
 	 * default constructor for view with grid size
@@ -91,7 +83,8 @@ public class View extends JFrame implements ActionListener
 	{	
 		this.setTitle(Resources.GAME_TITLE);
 		//super(" Mine Sweeper");
-		ImageIcon img = Resources.iconRedMine;
+		//ImageIcon img = Resources.getResources().iconRedMine;
+		ImageIcon img = new ImageIcon(getClass().getResource("RedMine.png"));
 		setIconImage(img.getImage());
 				
 		_nWidth = width;
@@ -173,9 +166,9 @@ public class View extends JFrame implements ActionListener
 	        {
 	        	BestTimes times = BestTimesManager.getBestTimes();
 	        	
-	        	JOptionPane.showMessageDialog(null,"Beginner: " + times.getBeginnerName() + " = " + times.getBeginnerTime() + 
-	        			"\n\nIntermediate: " + times.getIntermediateName() + " = " + times.getIntermediateTime() + 
-	        			"\n\nExpert: " + times.getExpertName() + " = " + times.getExpertTime() + "\n\n");	             
+	        	JOptionPane.showMessageDialog(null,"Beginner: " + times.getBeginnerName() + " = " + times.getBeginnerTime() + " sec" + 
+	        			"\n\nIntermediate: " + times.getIntermediateName() + " = " + times.getIntermediateTime() + " sec" +
+	        			"\n\nExpert: " + times.getExpertName() + " = " + times.getExpertTime() + " sec");	             
 	        }
 	    });
 		menuGame.addSeparator();
@@ -206,7 +199,8 @@ public class View extends JFrame implements ActionListener
 		
 		javax.swing.GroupLayout layoutInfoPnl = new javax.swing.GroupLayout(pnlInfo);
         pnlInfo.setLayout(layoutInfoPnl);
-		btnFace.setIcon(Resources.iconHappyFace);
+		//btnFace.setIcon(Resources.iconHappyFace);
+        btnFace.setIcon(Resources.getResources().iconHappyFace);
 		//btnFace.setPressedIcon(Resources.iconHappyFace);
 		btnFace.setMaximumSize(new Dimension(26,26));
 		btnFace.setBorderPainted(false);
@@ -222,9 +216,9 @@ public class View extends JFrame implements ActionListener
 		//pnlInfo.add(lblMines1s);
 		//pnlInfo.add(btnFace);
 		
-		lblTime1s.setIcon(Resources.icon0);
-		lblTime10s.setIcon(Resources.icon0);
-		lblTime100s.setIcon(Resources.icon0);
+		lblTime1s.setIcon(Resources.getResources().icon0);
+		lblTime10s.setIcon(Resources.getResources().icon0);
+		lblTime100s.setIcon(Resources.getResources().icon0);
 		
 		//pnlInfo.add(lblTime100s);
 		//pnlInfo.add(lblTime10s);
@@ -313,7 +307,7 @@ public class View extends JFrame implements ActionListener
 		for (int i = 0; i < _nFieldSize; i++)
 		{
 			
-		    GridSpaceButton btnUntouched = new GridSpaceButton(Resources.iconUntouched);
+		    GridSpaceButton btnUntouched = new GridSpaceButton(Resources.getResources().iconUntouched);
 		    btnUntouched.setSize(16, 16);
 			
 			
@@ -352,7 +346,7 @@ public class View extends JFrame implements ActionListener
 	public void clearTimer()
 	{
 		//lblTimeOnes.setText("" + 0);
-		lblTime1s.setIcon(Resources.icon0);
+		lblTime1s.setIcon(Resources.getResources().icon0);
 		repaint();
 	}
 	
@@ -366,13 +360,13 @@ public class View extends JFrame implements ActionListener
 		this._nRemainingMines = nMinesRemaining;
 		
 		int n100s = _nRemainingMines / 100;
-		lblMines100s.setIcon(new ImageIcon(n100s + Resources.IMG_TYPE));
+		lblMines100s.setIcon(Resources.htDigits.get(n100s));
 		
 		int n10s = (_nRemainingMines / 10) % 10;
-		lblMines10s.setIcon(new ImageIcon(n10s + Resources.IMG_TYPE));
+		lblMines10s.setIcon(Resources.htDigits.get(n10s));
 		
 		int n1s = _nRemainingMines % 10;
-		lblMines1s.setIcon(new ImageIcon(n1s + Resources.IMG_TYPE));
+		lblMines1s.setIcon(Resources.htDigits.get(n1s));
 		repaint();
 	}
 	
@@ -431,9 +425,9 @@ public class View extends JFrame implements ActionListener
 				int n10s = (int) (_nTimeSec / 10) % 10;
 				int n1s = (int) _nTimeSec % 10;
 				
-				lblTime100s.setIcon(new ImageIcon("" + n100s + ".png"));
-				lblTime10s.setIcon(new ImageIcon("" + n10s + ".png"));
-				lblTime1s.setIcon(new ImageIcon("" + n1s + ".png"));
+				lblTime100s.setIcon(Resources.htDigits.get(n100s));
+				lblTime10s.setIcon(Resources.htDigits.get(n10s));
+				lblTime1s.setIcon(Resources.htDigits.get(n1s));
 				repaint();
 			}
 		}
@@ -447,7 +441,7 @@ public class View extends JFrame implements ActionListener
 	public void showUncertainFace()
 	{
 		//iconUncertainFace = new ImageIcon("UncertainFace.png");
-		btnFace.setIcon(Resources.iconUncertainFace);
+		btnFace.setIcon(Resources.getResources().iconUncertainFace);
 		repaint();
 	}
 	
@@ -456,7 +450,7 @@ public class View extends JFrame implements ActionListener
 	 */
 	public void showHappyFace()
 	{
-		btnFace.setIcon(Resources.iconHappyFace);
+		btnFace.setIcon(Resources.getResources().iconHappyFace);
 		repaint();
 	}
 
@@ -478,7 +472,7 @@ public class View extends JFrame implements ActionListener
 	 */
 	public void showHappyFacePressed() 
 	{
-		btnFace.setIcon(Resources.iconHappyPressedFace);
+		btnFace.setIcon(Resources.getResources().iconHappyPressedFace);
 		repaint();	
 	}
 
@@ -487,7 +481,7 @@ public class View extends JFrame implements ActionListener
 	 */
 	public void showCoolFace() 
 	{
-		btnFace.setIcon(Resources.iconCoolFace);
+		btnFace.setIcon(Resources.getResources().iconCoolFace);
 		repaint();		
 		
 	}	
@@ -497,7 +491,7 @@ public class View extends JFrame implements ActionListener
 	 */
 	public void showYuckFace() 
 	{
-		btnFace.setIcon(Resources.iconYuckFace);
+		btnFace.setIcon(Resources.getResources().iconYuckFace);
 		repaint();		
 	}
 

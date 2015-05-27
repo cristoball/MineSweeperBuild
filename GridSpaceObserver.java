@@ -3,16 +3,12 @@
  */
 
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
 /**
  * @author Christoball
@@ -23,6 +19,7 @@ public class GridSpaceObserver extends MouseAdapter
 	private Controller _controller;
 	private View _view;
 	private boolean _bStartedTimer = false;
+
 	
 	public GridSpaceObserver(Controller msController, View msView)
 	{
@@ -56,7 +53,9 @@ public class GridSpaceObserver extends MouseAdapter
 			}
 			Icon iconBtn = gridBtn.getIcon();
 			//Shouldn't have to do this, but disabling buttons doesn't seem to work
-			if ((iconBtn.equals(Resources.iconDisarmed) || iconBtn.equals(Resources.iconUntouched) || iconBtn.equals(Resources.iconPossibleMine)))
+			if ((iconBtn.equals(Resources.getResources().iconDisarmed) || 
+					iconBtn.equals(Resources.getResources().iconUntouched) || 
+					iconBtn.equals(Resources.getResources().iconPossibleMine)))
 			{
 				this._controller.getView().showHappyFace();
 				return;
@@ -148,7 +147,7 @@ public class GridSpaceObserver extends MouseAdapter
 	{
 		_view.stopTimer();	
 		_view.showYuckFace();
-		btnMineGrid.setIcon(Resources.iconRedMine);
+		btnMineGrid.setIcon(Resources.getResources().iconRedMine);
 		GridSpaceButton[] btnsGrid = _view.getGridSpaceBtns();
 		for (int i = 0; i < btnsGrid.length; i++)	//loop through buttons and set them disabled, remove listeners, show hidden mines
 		{
@@ -156,7 +155,7 @@ public class GridSpaceObserver extends MouseAdapter
 			{
 				if (btnMineGrid.equals(btnsGrid[i]) == false) //don't change a red mine to a black mine image
 				{
-					btnsGrid[i].setIcon(Resources.iconBlackMine);
+					btnsGrid[i].setIcon(Resources.getResources().iconBlackMine);
 				}
 			}
 			btnsGrid[i].setDisabledIcon(btnsGrid[i].getIcon()); //set button's disabled image as what it already is showing to please Java
@@ -182,7 +181,7 @@ public class GridSpaceObserver extends MouseAdapter
 		{		
 			_view.showUncertainFace();
 			GridSpaceButton gridBtn = (GridSpaceButton) evtMouse.getComponent();
-			gridBtn.setIcon(Resources.icon0Mines);
+			gridBtn.setIcon(Resources.getResources().icon0Mines);
 		}
 	}
 

@@ -8,7 +8,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
 /**
  * @author Christoball
@@ -30,30 +29,34 @@ public class BestTimesManager
 			//_instance = new BestTime();
 			ObjectInputStream objectinputstream = null;
 			FileInputStream streamIn = null;
-			 try 
-			 {
-				 File file = new File(Resources.sfileBestTimes);
-				 streamIn = new FileInputStream(file);
-				 objectinputstream = new ObjectInputStream(streamIn);
+			try 
+			{
+				
+				File file = new File(Resources.sfileBestTimes);
+				streamIn = new FileInputStream(file);
+				objectinputstream = new ObjectInputStream(streamIn);
 				 
-				 try
-				 {
-					 _instance = (BestTimes) objectinputstream.readObject();
-				 }
-				 catch (Exception ex)
-				 {
-					 ex.printStackTrace();
-				 }
+				try
+				{
+					_instance = (BestTimes) objectinputstream.readObject();
+				}
+				catch (Exception ex)
+				{
+					ex.printStackTrace();
+				}
 				 objectinputstream .close();
 				 streamIn.close();
-			 } 
-			 catch (Exception e) 
-			 {
-				 e.printStackTrace();
-			 }
-			 if (_instance == null)
-			 {
-				 _instance = new BestTimes();
+			} 
+			catch (Exception e) 
+			{
+				e.printStackTrace();
+			}
+			if (_instance == null)
+			{
+				_instance = new BestTimes();
+				_instance.setBeginnerTime("Anonymous", "999.999");
+				_instance.setIntermediateTime("Anonymous", "999.999");
+				_instance.setExpertTime("Anonymous", "999.999");				 
 			 }
 		}
 		return _instance;
@@ -80,7 +83,6 @@ public class BestTimesManager
 		FileOutputStream fout = null;
 		try
 		{
-			
 			File file = new File(Resources.sfileBestTimes);
 			fout = new FileOutputStream(file, false);
 			oos = new ObjectOutputStream(fout);

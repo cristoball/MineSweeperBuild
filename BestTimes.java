@@ -13,6 +13,15 @@ import java.io.Serializable;
  */
 public class BestTimes implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	//private static final long serialVersionUID = 6876019046542474878L;
+	
 	private String _sBeginnerTime = "";
 	private String _sBeginnerName = "";
 	
@@ -72,8 +81,5 @@ public class BestTimes implements Serializable
 		return this._sBeginnerTime;
 	}
 	
-	public static void main(String[] args)
-	{
-	
-	}
+
 }
