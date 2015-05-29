@@ -41,3 +41,28 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+/GameButtonObserver.class
+/GridSpace.class
+/GridSpaceButton.class
+/GridSpaceObserver.class
+/IntermediateView.class
+/Main.class
+/MenuBeginnerObserver.class
+/MenuExpertObserver.class
+/MenuIntermediateObserver.class
+/MenuNewObserver.class
+/Resources.class
+/SaveBeginnerTime.class
+/SaveExpertTime.class
+/SaveIntermediateTime.class
+/SaveTime.class
+/SaveTimeFactory.class
+/Settings.class
+/View$1.class
+/View$2.class
+/View$3.class
+/View.class
+/BestTimes.class
+/BestTimesManager.class
+/Controller.class
+/ExpertView.class

@@ -22,6 +22,7 @@ import javax.swing.Timer;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 
 
 /**
@@ -147,7 +148,12 @@ public class View extends JFrame implements ActionListener
 	protected void buildLayout(int width, int height)
 	{
 		super.setLocationByPlatform(true);
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		//setLocationRelativeTo(null); //center screen
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		//CENTER SCREEN
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+		//setAlwaysOnTop(true); 
 		//super.setDefaultLookAndFeelDecorated(true);		
 		
 		//MENU BAR

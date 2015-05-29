@@ -1,3 +1,7 @@
+import java.applet.Applet;
+
+import javax.swing.JApplet;
+
 /**
  * 
  */
@@ -7,7 +11,7 @@
  * @author Christoball
  *
  */
-public class Main 
+public class Main extends Applet
 {
 
 	/**
@@ -27,4 +31,8 @@ public class Main
 		
 	}
 	
+	public void init()
+	{
+		runMineSweeper();
+	}
 }
